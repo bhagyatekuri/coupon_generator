@@ -76,7 +76,7 @@ function CouponGenerator() {
                     </div>
                 )}
 
-                <Nav.Link as={Link} onClick={handleLogout} className="mx-2 text-white">Logout</Nav.Link>
+                <Nav.Link onClick={handleLogout} className="mx-2 text-white">Logout</Nav.Link>
 
 
 
