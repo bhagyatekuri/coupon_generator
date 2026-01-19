@@ -2,14 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Copy, Check, Link } from 'lucide-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
-
-
+import { useNavigate } from 'react-router-dom';
 function CouponGenerator() {
     const [user, setUser] = useState(null);
     const [couponCode, setCouponCode] = useState('');
     const [showSuccess, setShowSuccess] = useState(false);
     const [copied, setCopied] = useState(false);
+    const navigate = useNavigate();
 
+    const handleLogout = () => {
+        // 1. Clear user authentication here
+        localStorage.removeItem('token');
+
+        // 2. Redirect to home page
+        navigate('/'); // SPA-safe, respects basename
+    };
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
@@ -69,7 +76,7 @@ function CouponGenerator() {
                     </div>
                 )}
 
-                <Nav.Link as={Link} to="/" className="mx-2 text-white">Logout</Nav.Link>
+                <Nav.Link onClick={handleLogout} className="mx-2 text-white">Logout</Nav.Link>
 
 
 

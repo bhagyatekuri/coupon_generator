@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import { Copy, Check } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
 function ValidateCoupon() {
@@ -9,6 +9,15 @@ function ValidateCoupon() {
     const [coupons, setCoupons] = useState([]);
     const [couponCode, setCouponCode] = useState("");
     const [message, setMessage] = useState("");
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        // 1. Clear user authentication here
+        localStorage.removeItem('token');
+
+        // 2. Redirect to home page
+        navigate('/'); // SPA-safe, respects basename
+    };
     const tableContainerStyle = {
         margin: '30px', // Adds 30px margin on all sides
         border: '1px solid black',
@@ -78,7 +87,7 @@ function ValidateCoupon() {
                     </div>
                 )}
 
-                <Nav.Link as={Link} to="/" className="mx-2 text-white">Logout</Nav.Link>
+                <Nav.Link onClick={handleLogout} className="mx-2 text-white">Logout</Nav.Link>
 
 
 
