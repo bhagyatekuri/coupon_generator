@@ -13,7 +13,7 @@ function ValidateCoupon() {
     const [message, setMessage] = useState("");
     const handleLogout = () => {
         // any logout logic here
-        navigate('/signup'); // SPA-safe
+        navigate('/'); // SPA-safe
     };
     const tableContainerStyle = {
         margin: '30px', // Adds 30px margin on all sides

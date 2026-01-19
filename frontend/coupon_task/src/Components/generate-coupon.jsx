@@ -14,7 +14,7 @@ function CouponGenerator() {
 
     const handleLogout = () => {
         // any logout logic here
-        navigate('/signup'); // SPA-safe
+        navigate('/'); // SPA-safe
     };
 
     useEffect(() => {
