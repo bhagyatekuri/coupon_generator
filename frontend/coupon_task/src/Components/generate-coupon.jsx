@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Copy, Check, Link } from 'lucide-react';
+import { Copy, Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
 
@@ -69,7 +70,7 @@ function CouponGenerator() {
                     </div>
                 )}
 
-                <Nav.Link href="/signup" className="mx-2 text-white">Logout</Nav.Link>
+                <Nav.Link as={Link} to="/signup" className="mx-2 text-white">Logout</Nav.Link>
 
 
 

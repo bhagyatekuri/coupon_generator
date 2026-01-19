@@ -10,9 +10,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HashRouter>
+    <BrowserRouter basename='/coupon_generator'>
       <App />
-    </HashRouter>
+    </BrowserRouter>
 
   </StrictMode>,
 )
