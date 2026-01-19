@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Copy, Check } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
 
@@ -10,6 +10,12 @@ function CouponGenerator() {
     const [couponCode, setCouponCode] = useState('');
     const [showSuccess, setShowSuccess] = useState(false);
     const [copied, setCopied] = useState(false);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        // any logout logic here
+        navigate('/signup'); // SPA-safe
+    };
 
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
@@ -70,7 +76,7 @@ function CouponGenerator() {
                     </div>
                 )}
 
-                <Nav.Link as={Link} to="/signup" className="mx-2 text-white">Logout</Nav.Link>
+                <Nav.Link as={Link} onClick={handleLogout} className="mx-2 text-white">Logout</Nav.Link>
 
 
 
