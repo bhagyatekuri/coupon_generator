@@ -69,7 +69,7 @@ function CouponGenerator() {
                     </div>
                 )}
 
-                <Nav.Link href="/" className="mx-2 text-white">Logout</Nav.Link>
+                <Nav.Link as={Link} to="/" className="mx-2 text-white">Logout</Nav.Link>
 
 
 
