@@ -41,41 +41,65 @@ function ComponentLogin() {
         try {
             // ✅ POST CREDENTIALS
             const res = await axios.post(
-                "http://localhost:5000/api/auth/login",
+                "http://localhost:5001/api/auth/login",
                 {
                     email,
                     password,
                 }
             );
+            console.log(res.data)
+            if (res.data.token) {
+                const { token, user } = res.data;
 
-            if (res.data.success) {
-                const { userId, UserName, role, token } = res.data;
+                console.log('assigned data', user.role);
 
-                // ✅ SAVE AUTH DATA
                 localStorage.setItem(
                     'user',
                     JSON.stringify({
-                        user_id: userId,
-                        user_name: UserName
+                        user_id: user.id,
+                        user_name: user.name,
+                        role: user.role,
+                        token
                     })
                 );
+                // ROLE-BASED REDIRECT
+                if (user.role === "admin") {
 
-                localStorage.setItem('token', token);
-                // localStorage.setItem("token", token);
-                // localStorage.setItem("role", role);
-
-                // ✅ ROLE-BASED REDIRECT
-                if (role === "admin") {
-                    // console.log(res.data)
-                    // console.log(UserName)
-                    //alert(res.data.id)
                     navigate("/generate-coupon");
-                } else if (role === "user") {
+                } else if (user.role === "user") {
                     console.log(res.data)
                     navigate("/validate-coupon");
                 }
-
             }
+
+            // if (res.data.success) {
+            //     //console.log(res.data)
+            //     const { userId, UserName, role, token } = res.data;
+
+            //     console.log("assigned data", role)
+            //     // ✅ SAVE AUTH DATA
+            //     localStorage.setItem(
+            //         'user',
+            //         JSON.stringify({
+            //             user_id: userId,
+            //             user_name: UserName
+            //         })
+            //     );
+
+            //     localStorage.setItem('token', token);
+            //     // localStorage.setItem("token", token);
+            //     localStorage.setItem("role", role);
+
+            //     // ROLE-BASED REDIRECT
+            //     if (role === "admin") {
+
+            //         navigate("/generate-coupon");
+            //     } else if (role === "user") {
+            //         console.log(res.data)
+            //         navigate("/validate-coupon");
+            //     }
+
+            // }
         } catch (err) {
             //console.log(res.data)
             console.error(err);
@@ -104,7 +128,7 @@ function ComponentLogin() {
 
                 </form>
 
-                <button
+                {/* <button
                     className="btn btn-danger w-100 mt-3"
                     onClick={() =>
                         window.location.href =
@@ -112,7 +136,7 @@ function ComponentLogin() {
                     }
                 >
                     Continue with Google
-                </button>
+                </button> */}
             </div>
         </div>
 

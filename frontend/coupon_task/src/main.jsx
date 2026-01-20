@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename='/coupon_generator'>
+    <BrowserRouter basename='/coupon_generator/'>
       <App />
     </BrowserRouter>
 

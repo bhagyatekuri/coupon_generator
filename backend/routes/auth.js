@@ -1,18 +1,18 @@
-//const express = require("express");
+
 import express from "express"
-//const bcrypt = require("bcrypt");
+
 import bcrypt from "bcrypt"
-//const jwt = require("jsonwebtoken");
+
 import jwt from "jsonwebtoken"
-//const passport = require("passport");
+
+
 import passport from "passport";
-//import passport from "passport.js";
+
 import pool from "../db.js";
-//import pool from "../db.js";
-//const pool = require("../db");
+
 import dotenv from "dotenv";
 dotenv.config();
-//require('dotenv').config();
+
 
 const router = express.Router();
 router.use(express.json());
@@ -26,6 +26,9 @@ router.use(express.urlencoded({ extended: true }));
 //         message: "Login API reached",
 //     });
 // });
+
+console.log('AUTH ROUTES LOADED');
+
 router.get(
     "/google",
     passport.authenticate("google", { scope: ["profile", "email"] })
@@ -57,62 +60,70 @@ router.get("/debug-db", async (req, res) => {
     });
 });
 
-router.post("/login", async (req, res) => {
-    console.log("LOGIN HIT:", req.body);
 
-    const { email, password } = req.body;
 
+router.post('/login', async (req, res) => {
+    // console.log("Login request received", req.body);
     try {
+        const { email, password } = req.body;
 
         if (!email || !password) {
-            return res.status(400).json({ success: false, message: "Missing fields" });
+            return res.status(400).json({ message: 'Email and password required' });
         }
 
-        const cleanEmail = email.trim().toLowerCase();
+        console.log("User found:", email);
+        // 1️⃣ Get user by email
         const result = await pool.query(
-            "SELECT id, name, email, password, role FROM users WHERE LOWER(TRIM(email)) = $1",
-            [cleanEmail]
+            'SELECT id, name, email, password, role FROM users WHERE email = $1',
+            [email]
         );
+
+        console.log("query executed", result.rows)
 
         if (result.rows.length === 0) {
-            console.log("No user found for:", result.rows);
-            return res.status(401).json({ success: false, message: "Invalid credentials" });
+            return res.status(401).json({ message: 'Invalid email or password' });
         }
 
-        //console.log(result.rows[0])
         const user = result.rows[0];
-        console.log(user)
 
+        console.log("user data", user)
+        // 2️⃣ Compare password
         const isMatch = await bcrypt.compare(password, user.password);
+        console.log(isMatch)
         if (!isMatch) {
-            console.log(user.password)
-            return res.status(401).json({ success: false, message: "Invalid credentials" });
+            return res.status(401).json({ message: 'Invalid email or password' });
         }
 
-
+        // 3️⃣ Generate JWT
         const token = jwt.sign(
             {
-                userId: user.id,
-                role: user.role,
-                UserName: user.name
+                id: user.id,
+                email: user.email,
+                role: user.role
             },
             process.env.JWT_SECRET,
-            { expiresIn: "1h" }
+            { expiresIn: '1d' }
         );
 
+        // 4️⃣ Send response (NEVER send password)
         res.json({
+            message: 'Login successful',
             success: true,
-            userId: user.id,
-            UserName: user.name,
             token,
-            role: user.role,
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role
+            }
         });
 
     } catch (err) {
-        console.error("LOGIN ERROR:", err);
-        res.status(500).json({ success: false, message: "Server error" });
+        console.error('LOGIN ERROR:', err);
+        res.status(500).json({ message: 'Server error' });
     }
 });
+
 
 //module.exports = router;
 export default router;

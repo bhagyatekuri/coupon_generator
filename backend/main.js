@@ -1,28 +1,25 @@
-//const { Pool } = require("pg");
-//const express = require("express");
+
 import express from "express";
 import cors from "cors";
 import bcrypt from "bcrypt";
-//const cors = require("cors");
-//const jwt = require("jsonwebtoken");
+
 import jwt from "jsonwebtoken";
-//const pool = require("./db");
+
 import pool from "./db.js";
 import dotenv from "dotenv";
 dotenv.config();
-//const authRoutes = require("./routes/auth");
+
 import passport from "passport";
 import passportConfig from "./config/passport.js";
-//require("./config/passport");
-//const passport = require("passport");
+
 import authRoutes from "./routes/auth.js";
 import session from "express-session";
-//const session = require("express-session");
-const app = express();
 
-app.use(cors());
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
 app.use("/api/auth", authRoutes);
 app.use(
     session({
@@ -34,19 +31,9 @@ app.use(
 
 app.use(passportConfig.initialize());
 app.use(passportConfig.session());
-console.log("Google strategy loaded");
+//console.log("Google strategy loaded");
 
-// const db = new Pool({
-//     user: "postgres",
-//     host: "localhost",
-//     database: "coupon_generat",
-//     password: "Bhagya@123",
-//     port: 5432,
-// });
-// // ✅ test DB connection (do NOT close pool)
-// db.query("SELECT NOW()")
-//     .then(res => console.log("DB connected:", res.rows[0]))
-//     .catch(err => console.error("DB error:", err));
+
 
 
 // ✅ SIGNUP API
@@ -206,6 +193,9 @@ app.post("/api/coupons/validate", async (req, res) => {
         res.status(500).json({ message: "Validation failed" });
     }
 });
-app.listen(5000, () => {
-    console.log("Server running on port 5000");
+app.get('/_health', (req, res) => {
+    res.send('OK');
+});
+app.listen(5001, () => {
+    console.log("Server running on port 5001");
 });

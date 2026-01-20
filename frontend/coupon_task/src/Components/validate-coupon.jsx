@@ -40,7 +40,7 @@ function ValidateCoupon() {
         }
     }, []);
     useEffect(() => {
-        fetch("http://localhost:5000/api/coupons")
+        fetch("http://localhost:5001/api/coupons")
             .then(res => res.json())
             .then(data => setCoupons(data));
     }, []);

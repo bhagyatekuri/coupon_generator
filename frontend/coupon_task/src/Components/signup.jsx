@@ -57,7 +57,7 @@ function ComponentSignup() {
 
         try {
             const res = await axios.post(
-                "http://localhost:5000/api/signup",
+                "http://localhost:5001/api/signup",
                 form
             );
 
@@ -156,7 +156,7 @@ function ComponentSignup() {
                     <Link to="/" className="btn btn-default border w-100 text-decoration-none">Login here</Link >
 
                 </form>
-                <button
+                {/* <button
                     className="btn btn-danger w-100 mt-3"
                     onClick={() =>
                         window.location.href =
@@ -164,7 +164,7 @@ function ComponentSignup() {
                     }
                 >
                     Continue with Google
-                </button>
+                </button> */}
 
             </div>
         </div>
