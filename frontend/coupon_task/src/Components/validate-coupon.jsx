@@ -66,7 +66,7 @@ function ValidateCoupon() {
             setMessage(data.message);
 
             setCouponCode('');
-            const updated = await fetch("http://localhost:5000/api/coupons");
+            const updated = await fetch(`${import.meta.env.VITE_API_URL}/api/coupons`);
             setCoupons(await updated.json());
         } catch (err) {
             setMessage('Something went wrong')
