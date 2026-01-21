@@ -147,16 +147,22 @@ function ValidateCoupon() {
                         </tr>
                     </thead>
                     <tbody>
-                        {coupons.map((c, index) => (
-                            <tr scope="row" key={index}>
-                                <td>{c.code}</td>
-                                <td>{c.status}</td>
-                                <td>{new Date(c.created_at).toLocaleString()}</td>
-                                <td>
-                                    {c.used_at ? new Date(c.used_at).toLocaleString() : "-"}
+                        {Array.isArray(coupons) && coupons.length > 0 ? (
+                            coupons.map((c, index) => (
+                                <tr scope="row" key={index}>
+                                    <td>{c.code}</td>
+                                    <td>{c.status}</td>
+                                    <td>{new Date(c.created_at).toLocaleString()}</td>
+                                    <td>{c.used_at ? new Date(c.used_at).toLocaleString() : "-"}</td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="4" style={{ textAlign: "center" }}>
+                                    No coupons available
                                 </td>
                             </tr>
-                        ))}
+                        )}
                     </tbody>
                 </table>
             </div>
