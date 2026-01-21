@@ -16,19 +16,26 @@ import authRoutes from "./routes/auth.js";
 import session from "express-session";
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
 app.use(cors({
     origin: [
-        'http://localhost:5174',
         'http://localhost:5173',
-        'http://localhost:5174/coupon_generator/',
-        'https://your-vercel-app.vercel.app'
+        'http://localhost:5174',
+        'https://coupon-generator.vercel.app'
     ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
+//app.options('*', cors());
+app.use(express.json());   // MUST be before routes
+app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+    console.log('➡️ REQUEST:', req.method, req.originalUrl);
+    next();
+});
+app.use('/api/auth', authRoutes);
 
-app.use("/api/auth", authRoutes);
 app.use(
     session({
         secret: "secret",
@@ -41,7 +48,8 @@ app.use(passportConfig.initialize());
 app.use(passportConfig.session());
 //console.log("Google strategy loaded");
 
-
+console.log('🔥 BACKEND STARTED - VERSION 1');
+console.log('DB URL:', process.env.DATABASE_URL);
 
 
 // ✅ SIGNUP API
