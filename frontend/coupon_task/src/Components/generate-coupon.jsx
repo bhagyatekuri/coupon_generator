@@ -31,7 +31,7 @@ function CouponGenerator() {
             code += chars.charAt(Math.floor(Math.random() * chars.length));
         }
         try {
-            const response = await fetch('http://localhost:5001/api/coupons', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/coupons`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

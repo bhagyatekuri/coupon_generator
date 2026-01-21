@@ -40,7 +40,7 @@ function ValidateCoupon() {
         }
     }, []);
     useEffect(() => {
-        fetch("http://localhost:5001/api/coupons")
+        fetch(`${import.meta.env.VITE_API_URL}/api/coupons`)
             .then(res => res.json())
             .then(data => setCoupons(data));
     }, []);
