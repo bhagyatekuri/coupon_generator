@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import { Copy, Check } from 'lucide-react';
+
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
@@ -47,7 +48,7 @@ function ValidateCoupon() {
     const validateCoupon = async (e) => {
         e.preventDefault();
         try {
-            const result = await fetch("http://localhost:5000/api/coupons/validate",
+            const result = await fetch(`${import.meta.env.VITE_API_URL}/api/coupons/validate`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

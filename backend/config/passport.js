@@ -6,6 +6,8 @@ import GoogleStrategy from "passport-google-oauth20";
 import jwt from "jsonwebtoken";
 //const jwt = require("jsonwebtoken");
 //const pool = require("../db");
+import dotenv from "dotenv";
+dotenv.config();
 import pool from "../db.js";
 
 passportConfig.use(

@@ -35,6 +35,10 @@ function ComponentLogin() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(
+            'Calling API:',
+            `${import.meta.env.VITE_API_URL}/api/auth/login`
+        );
         if (!validate()) return;
         //alert('Login sucess')
 
