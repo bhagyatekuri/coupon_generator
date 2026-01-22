@@ -113,8 +113,8 @@ function ComponentLogin() {
     };
     return (
 
-        <div className="d-flex login-page justify-content-center align-items-center bg-primary vh-100">
-            <div className="bg-white login-card p-3 rounded w-25">
+        <div className=" login-page ">
+            <div className=" login-card ">
                 <h1>Login Page</h1>
                 <form action="" onSubmit={handleSubmit}>
                     <div className="mb-3">
