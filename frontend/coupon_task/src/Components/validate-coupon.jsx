@@ -136,36 +136,38 @@ function ValidateCoupon() {
                 </div>
 
             </div>
-            <div className="mt-[30px]">
-                <h2 className="m-20" style={list}>Coupons List</h2>
-                <table className="table table-striped mx-20 table-bordered" style={tableContainerStyle}>
-                    <thead className="thead-dark">
-                        <tr>
-                            <th scope="col">Coupon Code</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Created At</th>
-                            <th scope="col">Used At</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {Array.isArray(coupons) && coupons.length > 0 ? (
-                            coupons.map((c, index) => (
-                                <tr scope="row" key={index}>
-                                    <td>{c.code}</td>
-                                    <td>{c.status}</td>
-                                    <td>{new Date(c.created_at).toLocaleString()}</td>
-                                    <td>{c.used_at ? new Date(c.used_at).toLocaleString() : "-"}</td>
-                                </tr>
-                            ))
-                        ) : (
+            <div className="table-wrapper">
+                <div className="responsive-table">
+                    <h2 className="m-20" style={list}>Coupons List</h2>
+                    <table className="table table-striped mx-20 table-bordered" style={tableContainerStyle}>
+                        <thead className="thead-dark">
                             <tr>
-                                <td colSpan="4" style={{ textAlign: "center" }}>
-                                    No coupons available
-                                </td>
+                                <th scope="col">Coupon Code</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Created At</th>
+                                <th scope="col">Used At</th>
                             </tr>
-                        )}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {Array.isArray(coupons) && coupons.length > 0 ? (
+                                coupons.map((c, index) => (
+                                    <tr scope="row" key={index}>
+                                        <td>{c.code}</td>
+                                        <td>{c.status}</td>
+                                        <td>{new Date(c.created_at).toLocaleString()}</td>
+                                        <td>{c.used_at ? new Date(c.used_at).toLocaleString() : "-"}</td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="4" style={{ textAlign: "center" }}>
+                                        No coupons available
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
 
