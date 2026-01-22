@@ -1,0 +1,15 @@
+/* Mobile screens */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 18px;
+    }
+
+    .login-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .login-card input,
+    .login-card button {
+        font-size: 0.95rem;
+    }
+}

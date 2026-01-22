@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./coupon.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -113,8 +113,8 @@ function ComponentLogin() {
     };
     return (
 
-        <div className="d-flex justify-content-center align-items-center bg-primary vh-100">
-            <div className="bg-white p-3 rounded w-25">
+        <div className="d-flex login-page justify-content-center align-items-center bg-primary vh-100">
+            <div className="bg-white login-card p-3 rounded w-25">
                 <h1>Login Page</h1>
                 <form action="" onSubmit={handleSubmit}>
                     <div className="mb-3">
