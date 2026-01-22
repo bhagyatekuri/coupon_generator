@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./signup.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -87,8 +88,8 @@ function ComponentSignup() {
 
     return (
 
-        <div className="d-flex justify-content-center align-items-center bg-primary vh-100">
-            <div className="bg-white p-3 rounded w-25 margin-0 auto">
+        <div className="signup-page ">
+            <div className="signup-card ">
                 <h1>SignUp Page</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">

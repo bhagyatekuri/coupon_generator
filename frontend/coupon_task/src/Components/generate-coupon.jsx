@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Copy, Check, Link } from 'lucide-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./generate.css";
 import Nav from 'react-bootstrap/Nav';
 import { useNavigate } from 'react-router-dom';
 function CouponGenerator() {
@@ -82,9 +83,9 @@ function CouponGenerator() {
 
             </nav>
 
-            <div className="d-flex justify-content-center align-items-center  vh-100">
+            <div className=" coupon-page ">
 
-                <div className="bg-white p-3 rounded w-50 margin-0 auto">
+                <div className="coupon-card">
                     {/* Header */}
                     <div className="text-center mb-8">
                         <div className="inline-block bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-3 mb-4">
