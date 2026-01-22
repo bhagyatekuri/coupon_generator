@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -126,7 +127,7 @@ function ComponentLogin() {
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="password" placeholder="Password" />
                         {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
                     </div>
-                    <button type="submit" className="btn btn-success w-100">Log in</button>
+                    <button type="submit" className="btn btn-success w-full md:w-auto bg-blue-500 text-white px-4 py-2 w-100">Log in</button>
                     <p></p>
                     <Link to="/signup" className="btn btn-default border w-100 text-decoration-none">Create Account</Link >
 

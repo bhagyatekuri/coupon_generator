@@ -1,0 +1,47 @@
+.container {
+    width: 60%;
+    margin: auto;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+}
+
+.form {
+    display: flex;
+    gap: 1rem;
+}
+
+@media (max-width: 600px) {
+    .form {
+        flex-direction: column;
+    }
+}
+
+body {
+    font-size: clamp(14px, 2.5vw, 18px);
+}
+
+button {
+    padding: 12px 16px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    button {
+        width: auto;
+    }
+}
+
+.login-container {
+    max-width: 420px;
+    margin: auto;
+    padding: 1rem;
+}
+
+input {
+    width: 100%;
+}
