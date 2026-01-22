@@ -6,7 +6,7 @@ import CouponGenerator from './Components/generate-coupon'
 import ValidateCoupon from './Components/validate-coupon'
 import OAuthSuccess from './Components/OAuthSuccess'
 import Test from './Components/test'
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Navigate, Link } from 'react-router-dom';
 import { HashRouter } from 'react-router-dom'
 
 function App() {
