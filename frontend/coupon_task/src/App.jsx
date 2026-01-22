@@ -21,6 +21,8 @@ function App() {
       <Route path='/validate-coupon' element={<ValidateCoupon />}></Route>
       <Route path="/oauth-success" element={<OAuthSuccess />} />
       <Route path="/debug-db" element={<OAuthSuccess />} />
+      {/*catch-all */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
 
 
