@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Copy, Check, Link } from 'lucide-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./generate.css";
+import "./navbar.css";
 import Nav from 'react-bootstrap/Nav';
 import { useNavigate } from 'react-router-dom';
 function CouponGenerator() {
@@ -66,9 +67,9 @@ function CouponGenerator() {
     return (
         <div className=''>
 
-            <nav className="navbar navbar-light m-8 bg-primary text-secondary  justify-content-between" >
+            <nav className="navbar " >
 
-                <h2 className="navbar-brand mx-2 text-white">Home</h2>
+                <h2 className="nav-logo">Home</h2>
                 {user && (
                     <div className="mb-3 text-start">
                         <span className="fw-semibold">
@@ -77,8 +78,7 @@ function CouponGenerator() {
                     </div>
                 )}
 
-                <Nav.Link onClick={handleLogout} className="mx-2 text-white">Logout</Nav.Link>
-
+                <Nav.Link onClick={handleLogout} className="nav-links">Logout</Nav.Link>
 
 
             </nav>
